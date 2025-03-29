@@ -46,8 +46,8 @@ least_common_item <- min(logged_data$merchandise_type)
 
 ```
 
-It was found that the most common place to find people wearing New Zealand Warriors merchandise was 'r most_common'. 
-It was also found that the least popular item of merchandise was 'r least_common_item'
+It was found that the most common place to find people wearing New Zealand Warriors merchandise was `r most_common`. 
+It was also found that the least popular item of merchandise was `r least_common_item`.
 
 
 ```{r}
