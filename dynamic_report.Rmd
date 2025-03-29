@@ -1,0 +1,74 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+body 
+{
+  font-family: "Times New Roman", Times, serif;
+}
+
+```
+
+## Investigating New Zealand Warriors Merchandise Trends 
+
+The nature of this investigation was to determine how common it is to see people supporting the local Rugby League team, the New Zealand Warriors. Along with this, I was also interested in finding where people wear this merchandise. 
+
+```{r}
+# loading in the tidyverse package
+library(tidyverse)
+
+# reading in the csv file and naming it data
+data <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vQX8kEjRVJnIopxlIckozy2C-mRnZIkZ-fCTq5chuGDYkb2zfstvvcr6cPkq0lrdxD61ewDaU1BfKSa/pub?gid=628837099&single=true&output=csv"
+
+# naming the csv file logged data and renaming all the variables
+logged_data <- read_csv(data) %>%
+  rename(number_people = 2,
+       merchandise_type = 3,
+       location = 4)
+# finding the maximum number of people that were seen wearing the merchandise at once
+max(logged_data$number_people)
+
+# finding the most commonly worn piece of NZ Warriors merchandise
+most_common <- max(logged_data$merchandise_type)
+
+# finding the least common place to wear NZ Warriors merchandise
+min(logged_data$location)
+
+# least common item of NZ Warriors merchandise
+least_common_item <- min(logged_data$merchandise_type)
+
+```
+
+It was found that the most common place to find people wearing New Zealand Warriors merchandise was 'r most_common'. 
+It was also found that the least popular item of merchandise was 'r least_common_item'
+
+
+```{r}
+# bar plot of the various merchandise types
+logged_data  %>%
+  ggplot() +
+  geom_bar(aes(x = merchandise_type,
+           fill = merchandise_type))
+
+# bar plot of the various locations
+logged_data  %>%
+  ggplot() +
+  geom_bar(aes(y = location,
+               fill = location))
+
+```
+
+
+
+
+
+
+
+
